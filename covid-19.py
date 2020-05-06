@@ -55,7 +55,7 @@ def main():
         while True:
             try:
                 s = input('Country name: ')
-                if s in ['United States','USA','usa','United States of America']:
+                if s in ['United States','USA','usa','United States of America','U.S.A','u.s.a']:
                     s = 'US'
                 if s in ['Ivory Coast','ivory coast', 'Ivory coast']:
                     s = 'Cote d\'Ivoire'
