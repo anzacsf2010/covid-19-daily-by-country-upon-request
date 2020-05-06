@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 #-------------------------------------------#
 import pandas as pd 
-import numpy as np  
 import matplotlib.pyplot as plt
 import requests
 import io
@@ -19,6 +18,7 @@ def main():
     # Read CSV data
     csvFile = pd.read_csv(io.StringIO(csv.decode('utf-8')),error_bad_lines=False)
     csvFile = csvFile.set_index(['Date'])
+    countryData = csvFile.reindex(columns=['Country','Confirmed','Recovered','Deaths'])
     #print('+++++++++++++++++++++++++++++++')
     # January data for all countries
     janData = csvFile.loc['2020-01-31']
@@ -45,8 +45,8 @@ def main():
     #print(aprDataCountriesTotal)
     #print('+++++++++++++++++++++++++++++++')
     # May data for all countries though last available day
-    lastDate = str(date.today() - timedelta(days=1))
-    mayData = csvFile.loc[lastDate]
+    lastDay = str(date.today() - timedelta(days=1))
+    mayData = csvFile.loc[lastDay]
     mayDataCountriesTotal = mayData.set_index(['Country'])
     #print('Total Confirmed, Recovered, and Death Cases by Country in May:')
     #print(mayDataCountriesTotal)
@@ -109,14 +109,18 @@ def main():
         print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++')
     # Graph results for given country
     def getPlotsforCountry(val):
-        return "We are working on this"
+        countryVal = countryData[countryData.Country == val]
+        plt.rcParams['figure.figsize'] = (12,10)  
+        countryVal.plot(grid=True)
+        plt.show()
     # Run for given country
     print(f'Here is the data for {countryName}:')
     getDataforCountry(countryName)
+    getPlotsforCountry(countryName)
     # Decide to run it for another country
     while True:
         try:
-            nextStep = input('Do you want to see another country? Y/N: ')
+            nextStep = input('Do you want to see the same data for another country? Y/N: ')
         except ValueError:
             print('Please enter Y or N: ')
             continue
@@ -127,6 +131,7 @@ def main():
             countryName = getCountryName()
             print(f'Here is the data for {countryName}:')
             getDataforCountry(countryName)
+            getPlotsforCountry(countryName)
             continue
         else:
             print('Thank you for using this tool.')
