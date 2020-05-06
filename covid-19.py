@@ -1,5 +1,15 @@
 #!/usr/bin/python3
 #-------------------------------------------#
+"""
+###########################
+Script: This is a simple tool that allows a user to pick any country that has been reported cases on COVID-19, and then show a data frame for the said county along with the visualization from Jan 22 to date. 
+
+By: Andy St. Fort
+
+Date: May 5, 2020
+###########################
+"""
+print(__doc__)
 import pandas as pd 
 import matplotlib.pyplot as plt
 import requests
@@ -59,6 +69,8 @@ def main():
                     s = 'US'
                 if s in ['Ivory Coast','ivory coast', 'Ivory coast']:
                     s = 'Cote d\'Ivoire'
+                if s in ['South Korea','south korea']:
+                    s = 'Korea, South'
                 if s == 'Congo':
                     print('Please confirm between [Congo (Brazzaville)] and [Congo (Kinshasa)]: ')
                 check = janDataCountriesTotal.loc[s].count()
