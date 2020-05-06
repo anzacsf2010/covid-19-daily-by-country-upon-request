@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 #-------------------------------------------#
 import pandas as pd 
-import numpy as np
+import numpy as np  
+import matplotlib.pyplot as plt
 import requests
 import io
 from datetime import date, timedelta
@@ -54,10 +55,17 @@ def main():
         while True:
             try:
                 s = input('Country name: ')
+                if s in ['United States','USA','usa','United States of America']:
+                    s = 'US'
+                if s in ['Ivory Coast','ivory coast', 'Ivory coast']:
+                    s = 'Cote d\'Ivoire'
+                if s == 'Congo':
+                    print('Please confirm between [Congo (Brazzaville)] and [Congo (Kinshasa)]: ')
+                check = janDataCountriesTotal.loc[s].count()
             except:
-                print(f'{s} is not a country name')
+                print(f'{s} is not a country name. Please check spelling.')
                 continue
-            if not (janDataCountriesTotal.loc[s].count() > 0):
+            if check == 0:
                 print(f'{s} is not a country name. Please check spelling.')
                 continue
             if not s:
