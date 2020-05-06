@@ -11,6 +11,7 @@ Date: May 5, 2020
 """
 print(__doc__)
 import pandas as pd 
+import numpy as np
 import matplotlib.pyplot as plt
 import requests
 import io
@@ -118,6 +119,11 @@ def main():
         print('Total Confirmed, Recovered, and Death Cases: \n')
         maySeries = mayDataCountriesTotal.loc[[val],['Confirmed','Recovered','Deaths']]
         print(maySeries)
+        print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+        print(f'--------------Daily Mean - To Date ({countryName})------------ \n')
+        numberOfDays = ((date.today() - timedelta(days=1))- date(2020, 1, 22)).days
+        countryCasesDailyMean = np.round(maySeries / numberOfDays)
+        print(countryCasesDailyMean)
         print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++')
     # Graph results for given country
     def getPlotsforCountry(val):
