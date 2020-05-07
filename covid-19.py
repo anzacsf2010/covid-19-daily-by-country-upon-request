@@ -56,7 +56,7 @@ def main():
     #print(aprDataCountriesTotal)
     #print('+++++++++++++++++++++++++++++++')
     # May data for all countries though last available day
-    lastDay = str(date.today() - timedelta(days=2))
+    lastDay = str(date.today() - timedelta(days=1))
     mayData = csvFile.loc[lastDay]
     mayDataCountriesTotal = mayData.set_index(['Country'])
     #print('Total Confirmed, Recovered, and Death Cases by Country in May:')
