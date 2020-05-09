@@ -35,7 +35,7 @@ def main():
         url = "https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv"
         csv = requests.get(url).content
         # Read CSV data
-        csvFile = pd.read_csv(io.StringIO(csv.decode('utf-8')),error_bad_lines=False)
+        csvFile = pd.read_csv(io.StringIO(csv.decode('unicode_escape')),error_bad_lines=False)
         csvFile = csvFile.set_index(['Date'])
         return csvFile
 
