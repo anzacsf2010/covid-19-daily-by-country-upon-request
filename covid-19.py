@@ -1,5 +1,14 @@
 #!/usr/bin/python3
 #-------------------------------------------#
+"""
+###########################
+Script: This is a simple tool that allows a user to enter any country that has been reported cases on COVID-19, and then show a data frame for the said county along with the visualization from Jan 22 to date. 
+
+By: Andy St. Fort
+
+Date: May 5, 2020
+###########################
+"""
 import PySimpleGUI as sg      
 import pandas as pd 
 import numpy as np
