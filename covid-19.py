@@ -136,11 +136,14 @@ def main():
                 if countryName in ['South Korea','south korea','Korea']:
                     countryName = 'Korea, South'
                     final_check = 1
-                if countryName in ['England','Scotland','UK','U.K.','Northern Ireland','Wales','u.k.','uk']:
+                if countryName in ['England','Scotland','UK','U.K.','Northern Ireland','Wales','u.k.','uk','Great Britain']:
                     countryName = 'United Kingdom'
                     final_check = 1
+                if countryName in ['Holland']:
+                    countryName = 'Netherlands'
+                    final_check = 1
                 if countryName == 'Congo':
-                    sg.popup_ok('Please use [Congo (Brazzaville)] or [Congo (Kinshasa)] in your entry')
+                    sg.popup_ok('Please type either [Congo (Brazzaville)] or [Congo (Kinshasa)] in your entry')
                 check = check_country_name(countryData_Jan,countryName)
                 if check == 0:
                     sg.popup_error('Country name not found! Please try again.')
