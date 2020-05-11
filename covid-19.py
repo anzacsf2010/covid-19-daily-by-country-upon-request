@@ -27,10 +27,13 @@ def main():
             ['Edit', ['Paste', ['Special', 'Normal', ], 'Undo'], ],      
             ['Help', 'About...'], ] 
     sg.theme('Black') 
+    sg.SetOptions(text_justification='center')  
     layout = [  [sg.Text('Please enter a country name',size=(100,2),justification='center',auto_size_text=True)],
                 [sg.In(size=(100,2), key='-countryName-',justification='center')],          
                 [sg.Text('Correct country name will show here', size=(100,2), key='output',justification='center')],      
-                [sg.Button('Get data',pad=((250, 5), 0),size=(7,0),bind_return_key=True),sg.Button('Clear',size=(7,0)),sg.Quit(size=(7,0))],
+                [sg.Button('Get data',pad=((250, 5), 0),size=(7,1),bind_return_key=True),sg.Button('Clear',size=(7,1)),sg.Quit(size=(7,1))],
+                [sg.Checkbox('Show graph of data',key='-Box-',pad=((600, 5), 2),
+                             enable_events=True)],
                 [sg.Text('Country data output...', size=(100, 1),justification='center')],    
                 [sg.Output(size=(100,42),key='-Print-')] ]      
     window = sg.Window('COVID-19 Country Data Analysis', layout, finalize=True)   
@@ -184,7 +187,8 @@ def main():
                 print('Daily Mean')
                 print(f'--------------Daily Mean - To Date ({countryName})------------ \n')
                 print(generate_daily_mean(maySeries))
-                getPlotsforCountry(countryName)
+                if window.FindElement('-Box-').Get():
+                    getPlotsforCountry(countryName)
         if event in ['Clear', None]:
             try:
                 countryName = ''
