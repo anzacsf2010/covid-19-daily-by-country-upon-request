@@ -32,7 +32,7 @@ def main():
                 [sg.In(size=(100,2), key='-countryName-',justification='center')],          
                 [sg.Text('Correct country name will show here', size=(100,2), key='output',justification='center')],      
                 [sg.Button('Get data',pad=((250, 5), 0),size=(7,1),bind_return_key=True),sg.Button('Clear',size=(7,1)),sg.Quit(size=(7,1))],
-                [sg.Checkbox('Show graph of data',key='-Box-',pad=((600, 5), 2),
+                [sg.Checkbox('Show graph of data',key='-Box-',pad=((300, 5), 2),
                              enable_events=True)],
                 [sg.Text('Country data output...', size=(100, 1),justification='center')],    
                 [sg.Output(size=(100,42),key='-Print-')] ]      
