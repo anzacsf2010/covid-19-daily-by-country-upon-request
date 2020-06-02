@@ -96,7 +96,7 @@ def main():
 				else:
 					mayData = val.loc[lastDay1]
 		except:
-			mayData = val.loc[lastDay3]
+			mayData = val.loc['2020-05-31']
 		mayDataCountriesTotal = mayData.set_index(['Country'])
 		# June data for all countries though last available day if 2020-06-30 is not available
 		try:
@@ -110,7 +110,7 @@ def main():
 				else:
 					junData = val.loc[lastDay1]
 		except:
-			junData = val.loc[lastDay3]
+			junData = val.loc[lastDay1]
 		junDataCountriesTotal = junData.set_index(['Country'])
 		return janDataCountriesTotal, febDataCountriesTotal, marDataCountriesTotal, \
 		       aprDataCountriesTotal, mayDataCountriesTotal, junDataCountriesTotal
